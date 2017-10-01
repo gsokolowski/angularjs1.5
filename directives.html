@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html ng-app>  <!-- ng-app is build in directive that calls bootstrapping process-->
+<head>
+    <title>Angular Directives</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        .ng-cloak, [ng-cloak], [ng\:cloak] {
+            display: none !important;
+        }
+        .red {
+            color: red;
+            border-color: red;
+        }
+        .green {
+            color: green;
+            border-color: green;
+        }
+    </style>
+</head>
+
+<body ng-cloak>
+<!--
+but you need style ng-cloak in body to stop displaying curly braces before bootstrapping ins ready
+ -->
+
+<h1>Angular Directives</h1>
+<p>Documentation is here <a href="https://docs.angularjs.org/guide/directive">https://docs.angularjs.org/guide/directive</a> </p>
+
+    <!-- 2. Expresions and Data -->
+    1 + 2 = {{ 1+2 }} <br>
+
+    <p>Hello, {{ user }}</p>
+    <input type="text" name="" id="" ng-model="user">
+
+
+
+    <!-- 2. Build-in Directives - teach html new tricks -->
+    <div ng-init="name = 'Tamas'"></div>
+    {{ name }}
+    <p ng-bind="name"></p> <!-- build in directive -->
+
+    <br><br>
+
+
+    <!-- ng-click -->
+    <div ng-init="number = 0"></div>
+    <button ng-click="number = number + 1"> +1 </button> <!-- directive/function ng-click -->
+    <button ng-click="number = number - 1"> -1 </button>
+    <p>{{ number }}</p>
+
+    <br><br>
+
+
+
+    <!-- ng-if -->
+    Show me the paragraph <input type="checkbox" ng-model="isChecked">
+    <p ng-if="isChecked">Secret paragraph</p>
+
+    <br><br>
+
+
+    <!-- ng-hide and ng-show dom element like div or p-->
+    <div ng-init="number = 19">
+
+        Enter number
+        <input type="text" ng-model="guess">
+
+        <!-- ng-hide css hide -->
+        <p ng-show="guess == number">Correct</p>
+
+        <!-- ng-show - css show -->
+        <p ng-hide="guess == number">Inorrect</p>
+
+    </div>
+
+    <br><br>
+
+
+
+    <!-- ng-class -->
+    <div ng-init="number2 = 19">
+
+        Enter number2
+        <input type="text" ng-model="guess2" ng-class="{red: guess2 != number2, green: guess2 == number2}">
+
+    </div>
+    <br><br>
+
+
+
+    <!-- ng-repeat -->
+    <div ng-init="numbers = [0,1,2,3,4,5,6,7]">
+
+        <ul>
+            <li ng-repeat = "number in numbers" ng-class="{red: $even, green: $odd}">
+                {{ number }} -- {{ $even }} -- {{ $odd }}</li>
+        </ul>
+    </div>
+    <br><br>
+
+
+
+    <!-- ng-repeat on objects-->
+    <div ng-init="names = [
+        {surname: 'Smith', firstname: 'Joe'},
+        {surname: 'Smith', firstname: 'Sue'},
+        {surname: 'Sokolowski', firstname: 'Grzegorz'}
+    ]">
+
+        <ul>
+            <li ng-repeat = "name in names" >
+                {{ name.surname }}, {{ name.firstname }}</li>
+        </ul>
+    </div>
+    <br><br>
+
+
+
+    <!-- ng-model and ng-options on objects-->
+    <div ng-init="rebels = [
+        {name: 'Chewbacca1', profession: 'pilot1', weapon: 'bowcaster1', age: 19},
+        {name: 'Chewbacca2', profession: 'pilot2', weapon: 'bowcaster2', age: 20},
+        {name: 'Chewbacca3', profession: 'pilot1', weapon: 'bowcaster2', age: 32},
+        {name: 'Chewbacca4', profession: 'pilot3', weapon: 'bowcaster2', age: 34}
+    ]">
+
+        <select name="" ng-model = "rebel" ng-options = "rebel.name for rebel in rebels"></select>
+        <p>You have selected: {{ rebel.name }} {{ rebel.weapon }}</p>
+
+
+        <select name="" ng-model = "rebel" ng-options = "rebel.name group by rebel.weapon for rebel in rebels"></select>
+        <p>You have selected: {{ rebel.name }} {{ rebel.weapon }}</p>
+
+    </div>
+    <br><br>
+
+
+
+    <!--
+    recommendation is to put this tag here not in header
+    but you need ng-cloak in body to stop displaying curly braces before bootstrapping ins ready
+     -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

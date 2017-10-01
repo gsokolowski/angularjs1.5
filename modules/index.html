@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<!-- myApp i a name of module and any angular application needs to be defined as module
+if you seriosely thinking about building angular apps -->
+<head>
+    <title>Angular Controllers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <style>
+        .ng-cloak, [ng-cloak], [ng\:cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body ng-cloak>
+
+    <h1>Angular Modules</h1>
+    <p>Documentation is here <a href="https://docs.angularjs.org/guide/module">https://docs.angularjs.org/guide/module</a></p>
+
+    <div ng-controller="MyController as MyCtrl">
+        <p>Hello, {{ MyCtrl.name }} !</p>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <!-- code seperation app.js and controller.js-->
+    <script src="app.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>

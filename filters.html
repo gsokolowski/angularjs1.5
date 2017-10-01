@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app>  <!-- ng-app is build in directive that calls bootstrapping process-->
+<head>
+    <title>Angular Filters</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        .ng-cloak, [ng-cloak], [ng\:cloak] {
+            display: none !important;
+        }
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+    </style>
+
+</head>
+
+<body ng-cloak>
+
+<h1>Angular Filters</h1>
+<p>Documentation is here <a href="https://docs.angularjs.org/guide/filter">https://docs.angularjs.org/guide/filter</a> </p>
+
+In filters you us pipe sign to apply filter to any ng directive
+
+
+<div ng-init="amount = 1250.50567">
+    <p> {{ amount | currency:"£" }} </p>
+    <p> {{ amount | number:4 }} </p> round to 4 after dot.
+    <p> {{ -amount | number:4 }} </p> negative number
+</div>
+
+
+
+<div ng-init="amount = star wars">
+    <p> {{ string | uppercase }} </p>
+</div>
+
+
+
+<div ng-init="myDate = 1399648945000">
+    <p> {{ myDate | date }} </p>
+    <p> {{ myDate | date: 'medium' }} </p>
+    <p> {{ myDate | date: 'yyyy -MM -dd (H:m:s)' }} </p>
+</div>
+
+
+<div ng-init="myArray = [0,1,2,3,4,5]">
+    <p> {{ myArray | limitTo: -2 }} </p> gives [4,5]
+</div>
+
+
+// orderBy: name or -age for reverse order on age
+// rebel in rebels | orderBy: 'name'
+// rebel in rebels | orderBy: '-age'
+// rebel in rebels | orderBy: ['profession', 'age']
+
+<div ng-init="rebels = [
+    {name: 'Chewbacca', profession: 'pilot1', weapon: 'bowcaster1', age: 19},
+    {name: 'Alan', profession: 'pilot2', weapon: 'bowcaster2', age: 20},
+    {name: 'Stefan', profession: 'pilot1', weapon: 'bowcaster2', age: 32},
+    {name: 'Kazio', profession: 'pilot3', weapon: 'bowcaster2', age: 34}
+    ]">
+    <ul>
+        <li ng-repeat = "rebel in rebels | orderBy: ['profession', 'age'] " >{{ rebel.name }}, (age {{ rebel.age }}) is a {{ rebel.profession }} fighting with a {{ rebel.weapon}}</li>
+    </ul>
+</div>
+
+
+
+<div ng-init="rebels2 = [
+    {name: 'Chewbacca', profession: 'pilot1', weapon: 'bowcaster1', age: 19},
+    {name: 'Alan', profession: 'pilot2', weapon: 'bowcaster2', age: 20},
+    {name: 'Stefan', profession: 'pilot1', weapon: 'bowcaster2', age: 32},
+    {name: 'Kazio', profession: 'pilot3', weapon: 'bowcaster2', age: 34}
+    ]">
+    <ul>
+        <li ng-repeat = "rebel in rebels2 | filter: 'Alan' " >{{ rebel.name }}, (age {{ rebel.age }}) is a {{ rebel.profession }} fighting with a {{ rebel.weapon}}</li>
+    </ul>
+</div>
+
+
+<div ng-init="rebels3 = [
+    {name: 'Chewbacca', profession: 'pilot1', weapon: 'bowcaster1', age: 19},
+    {name: 'Alan', profession: 'pilot2', weapon: 'bowcaster2', age: 20},
+    {name: 'Stefan', profession: 'pilot1', weapon: 'bowcaster2', age: 32},
+    {name: 'Kazio', profession: 'pilot3', weapon: 'bowcaster2', age: 34}
+    ]">
+
+    Type name<input type="text" ng-model="search.name">
+    Free text search<input type="text" ng-model="search.$">
+    <ul>
+        <li ng-repeat = "rebel in rebels3 | filter: search " >{{ rebel.name }}, (age {{ rebel.age }}) is a {{ rebel.profession }} fighting with a {{ rebel.weapon}}</li>
+    </ul>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

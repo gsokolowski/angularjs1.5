@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<!-- ng-app is build in directive that calls bootstrapping process
+if you add name you are specifiying name of module so myApp is a name of module-->
+<head>
+    <title>Angular Controllers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+
+    <script>
+        // assign controller MyController to myApp module
+        var app = angular
+                .module('myApp', []) // list of other modules that this module depend on
+                .controller('MyController', MyController) // MyController should be handled by function MyController()
+                .controller('MySecondController', MySecondController);
+
+        // every controller takes one parameter which is a $scope object
+        // inside controller definition we can attach properties to this $scope object
+        // you can think about $scope at the view between controller and the View
+        // properties attached to $scope can be accessable in your View
+        // $scope can have not only properties it can have functions/methods because $scope is an object
+
+        // notice there is no scope in this controllers
+        // this keyword gets to $scope anyway so you don'y need to pass it ot controller
+        function MyController() {
+            var vm = this; //vm for view model
+            vm.name = 'Thomas'; // attache property to view model vm
+        }
+
+        function MySecondController() {
+            var vm = this; //vm for view model
+            vm.name = 'Simon';
+        }
+
+    </script>
+    <style>
+        .ng-cloak, [ng-cloak], [ng\:cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body ng-cloak>
+
+<h1>Angular Controller AS</h1>
+<p>Documentation is here <a href="https://docs.angularjs.org/guide/controller">https://docs.angularjs.org/guide/controller</a></p>
+
+
+<!-- purpose for using controller as i to be able to access properties and methods in nested controllers
+In MySecondController I can display name property of MyController -->
+
+<div ng-controller="MyController as MyCtrl">
+    <div ng-controller="MySecondController as MySecondCtrl">
+        {{ MyCtrl.name }}
+        {{ MySecondCtrl.name }}
+    <div>
+</div>
+
+
+</body>
+</html>

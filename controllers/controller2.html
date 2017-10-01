@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<!-- ng-app is build in directive that calls bootstrapping process
+if you add name you are specifiying name of module so myApp is a name of module-->
+<head>
+    <title>Angular Controllers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+
+    <script>
+        // assign controller MyController to myApp module
+        angular.module('myApp', [])
+                .controller('MyController', MyController);
+
+        // every controller takes one parameter which is a $scope object
+        // inside controller definition we can attach properties to this $scope object
+        // you can think about $scope at the view between controller and the View
+        // properties attached to $scope can be accessable in your View
+        // $scope can have not only properties it can have functions/methods because $scope is an object
+        function MyController($scope) {
+            $scope.number = 0;
+
+            $scope.increment = function(amount) {
+                $scope.number = $scope.number + amount;
+            };
+
+            $scope.decrement = function(amount) {
+                $scope.number = $scope.number - amount;
+            };
+        }
+    </script>
+    <style>
+        .ng-cloak, [ng-cloak], [ng\:cloak] {
+            display: none !important;
+        }
+    </style>
+
+</head>
+
+<body ng-cloak>
+
+    <h1>Angular Controllers</h1>
+    <p>Documentation is here <a href="https://docs.angularjs.org/guide/controller">https://docs.angularjs.org/guide/controller</a> </p>
+
+
+    <div ng-controller="MyController">
+        {{ number }}
+        <p>
+            <button ng-click="increment(5)">+5</button>
+            <button ng-click="decrement(5)">-5</button>
+        </p>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
